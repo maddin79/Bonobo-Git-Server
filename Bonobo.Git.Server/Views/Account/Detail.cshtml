@@ -29,6 +29,10 @@ else
                 <div class="content">@Model.Email</div>
             </div>
             <div class="ctrlHolder">
+                <h5>@Html.LabelFor(m => m.AD)</h5>
+                <div class="content">@Model.AD</div>
+            </div>
+            <div class="ctrlHolder">
                 <h5>@Html.LabelFor(m => m.Roles)</h5>
                 <div class="content">
                     @for (int i = 0; i < Model.Roles.Length; i++)

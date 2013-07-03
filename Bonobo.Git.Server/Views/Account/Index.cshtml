@@ -46,6 +46,7 @@
             grid.Column("Name", typeof(UserDetailModel).GetDisplayValue("Name")),
             grid.Column("Surname", typeof(UserDetailModel).GetDisplayValue("Surname")),
             grid.Column("Email", typeof(UserDetailModel).GetDisplayValue("Email")),
+            grid.Column("AD", typeof(UserDetailModel).GetDisplayValue("AD")),
             grid.Column(format: (item) => Html.ActionLink(Resources.Grid_Edit, "Edit", new { id = item.Username }), style: "action"),
             grid.Column(format: (item) => Html.ActionLink(Resources.Grid_Delete, "Delete", new { id = item.Username }, new { @class = "deleteButton" }), style: "action")
         )

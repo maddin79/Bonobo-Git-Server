@@ -36,6 +36,7 @@ namespace Bonobo.Git.Server.Controllers
                         Name = user.Name,
                         Surname = user.Surname,
                         Email = user.Email,
+                        AD = user.AD,
                         Roles = user.Roles,                        
                     };
                     return View(model);
@@ -101,6 +102,7 @@ namespace Bonobo.Git.Server.Controllers
                         Name = user.Name,
                         Surname = user.Surname,
                         Email = user.Email,
+                        AD = user.AD,
                         Roles = roles,
                     };
                     PopulateRoles();
@@ -143,7 +145,7 @@ namespace Bonobo.Git.Server.Controllers
 
                 if (valid)
                 {
-                    MembershipService.UpdateUser(model.Username, model.Name, model.Surname, model.Email, model.NewPassword);
+                    MembershipService.UpdateUser(model.Username, model.Name, model.Surname, model.Email, model.NewPassword, model.AD);
                     Roles.RemoveUserFromRoles(model.Username, Roles.GetAllRoles());
                     if (model.Roles != null)
                     {
@@ -182,7 +184,7 @@ namespace Bonobo.Git.Server.Controllers
 
             if (ModelState.IsValid)
             {
-                if (MembershipService.CreateUser(model.Username, model.Password, model.Name, model.Surname, model.Email))
+                if (MembershipService.CreateUser(model.Username, model.Password, model.Name, model.Surname, model.Email,model.AD))
                 {
                     if (User.IsInRole(Definitions.Roles.Administrator))
                     {
@@ -217,6 +219,7 @@ namespace Bonobo.Git.Server.Controllers
                     Surname = item.Surname,
                     Email = item.Email,
                     Roles = item.Roles,
+                    AD = item.AD,
                 });
             }
             return model;

@@ -50,6 +50,10 @@
           @Html.ValidationMessageFor(m => m.ConfirmPassword)
         </p> 
       </div> 
+      <div class="ctrlHolder"> 
+          @Html.LabelFor(m => m.AD)
+          @Html.CheckBoxFor(m => m.AD, new { @class = "selectInput small" })<em>*</em>
+      </div>
       <div class="buttonHolder"> 
         <button type="reset" class="secondaryAction">← @Resources.Reset</button> 
         <input type="submit" value="@Resources.Account_Create_Submit" class="primaryAction" />

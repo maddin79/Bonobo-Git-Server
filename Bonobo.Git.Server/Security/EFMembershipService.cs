@@ -6,6 +6,8 @@ using System.Web.Security;
 using Bonobo.Git.Server.Data;
 using System.Data;
 using Bonobo.Git.Server.Models;
+using System.DirectoryServices.AccountManagement;
+using Bonobo.Git.Server.Configuration;
 
 
 namespace Bonobo.Git.Server.Security
@@ -20,11 +22,27 @@ namespace Bonobo.Git.Server.Security
             using (var database = new BonoboGitServerContext())
             {
                 var user = database.Users.FirstOrDefault(i => i.Username == username);
-                return user != null && ComparePassword(password, user.Password);
+
+                if (user == null){
+                    return false;
+                }
+
+                // Authentication against Active Directory
+                // Added by: Martin Drees, CDH-Computing www.cdh-computing.de
+                if (user.AD) {
+                    string domain = UserConfiguration.Current.ADDomain;
+                    string serviceUser = domain + "\\" + UserConfiguration.Current.ADServiceUser;
+                    string servicePassword = UserConfiguration.Current.ADServiceUserPassword;
+                    PrincipalContext context = new PrincipalContext(ContextType.Domain, domain, serviceUser, servicePassword);
+                    bool ret = context.ValidateCredentials(username, password);
+                    return ret;
+                }
+
+                return ComparePassword(password, user.Password);
             }
         }
 
-        public bool CreateUser(string username, string password, string name, string surname, string email)
+        public bool CreateUser(string username, string password, string name, string surname, string email, bool ad)
         {
             if (String.IsNullOrEmpty(username)) throw new ArgumentException("Value cannot be null or empty.", "userName");
             if (String.IsNullOrEmpty(password)) throw new ArgumentException("Value cannot be null or empty.", "password");
@@ -41,6 +59,7 @@ namespace Bonobo.Git.Server.Security
                     Name = name,
                     Surname = surname,
                     Email = email,
+                    AD = ad,
                 };
                 database.Users.Add(user);
                 try
@@ -69,6 +88,7 @@ namespace Bonobo.Git.Server.Security
                         Name = item.Name,
                         Surname = item.Surname,
                         Email = item.Email,
+                        AD = item.AD,
                         Roles = item.Roles.Select(i => i.Name).ToArray(),
                     });
                 }
@@ -89,12 +109,13 @@ namespace Bonobo.Git.Server.Security
                     Name = user.Name,
                     Surname = user.Surname,
                     Email = user.Email,
+                    AD = user.AD,
                     Roles = user.Roles.Select(i => i.Name).ToArray(),
                  };
             }
         }
 
-        public void UpdateUser(string username, string name, string surname, string email, string password)
+        public void UpdateUser(string username, string name, string surname, string email, string password, bool ad)
         {
             using (var database = new BonoboGitServerContext())
             {
@@ -104,6 +125,7 @@ namespace Bonobo.Git.Server.Security
                     user.Name = name ?? user.Name;
                     user.Surname = surname ?? user.Surname;
                     user.Email = email ?? user.Email;
+                    user.AD = ad;
                     user.Password = password != null ? EncryptPassword(password) : user.Password;
                     database.SaveChanges();
                 }

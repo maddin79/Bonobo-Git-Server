@@ -43,6 +43,13 @@ else
               @Html.ValidationMessageFor(m => m.Email)
             </p> 
           </div> 
+          <div class="ctrlHolder"> 
+              @Html.LabelFor(m => m.AD)
+              @Html.TextBoxFor(m => m.AD, new { @class = "textInput medium" })<em>*</em>     
+            <p class="formHint">
+              @Html.ValidationMessageFor(m => m.AD)
+            </p> 
+          </div>
           @if (!User.IsInRole(Definitions.Roles.Administrator))
           {
              <div class="ctrlHolder"> 

@@ -12,6 +12,18 @@ namespace Bonobo.Git.Server.Configuration
         public bool AllowUserRepositoryCreation { get; set; }
         public bool AllowAnonymousRegistration { get; set; }
 
+        // Attribute for the Active Directory Domain
+        // Added by: Martin Drees, CDH-Computing www.cdh-computing.de
+        public string ADDomain { get; set; }
+
+        // Attribute for the Active Directory service user
+        // Added by: Martin Drees, CDH-Computing www.cdh-computing.de
+        public string ADServiceUser { get; set; }
+
+        // Attribute for the Active Directory service user password
+        // Added by: Martin Drees, CDH-Computing www.cdh-computing.de
+        public string ADServiceUserPassword { get; set; }
+        
 
         public static void Initialize()
         {

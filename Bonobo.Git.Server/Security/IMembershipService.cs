@@ -10,10 +10,10 @@ namespace Bonobo.Git.Server.Security
     public interface IMembershipService
     {
         bool ValidateUser(string username, string password);
-        bool CreateUser(string username, string password, string name, string surname, string email);
+        bool CreateUser(string username, string password, string name, string surname, string email, bool ad);
         IList<UserModel> GetAllUsers();
         UserModel GetUser(string username);
-        void UpdateUser(string username, string name, string surname, string email, string password);
+        void UpdateUser(string username, string name, string surname, string email, string password, bool ad);
         void DeleteUser(string username);
     }
 }

@@ -107,6 +107,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Data.SQLite.1.0.86.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ComponentModel.DataAnnotations">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -196,6 +197,7 @@
     <Compile Include="Data\Mapping\UserMap.cs" />
     <Compile Include="Data\Repository.cs" />
     <Compile Include="Data\Role.cs" />
+    <Compile Include="Data\Update\InsertFieldADToUser.cs" />
     <Compile Include="Data\Update\InitialCreateScript.cs" />
     <Compile Include="Data\Update\InsertDefaultData.cs" />
     <Compile Include="Data\Update\IUpdateScript.cs" />

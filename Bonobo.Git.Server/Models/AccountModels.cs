@@ -17,6 +17,7 @@ namespace Bonobo.Git.Server.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
+        public bool AD { get; set; }
         public string[] Roles { get; set; }
     }
 
@@ -52,6 +53,10 @@ namespace Bonobo.Git.Server.Models
 
         [Display(ResourceType = typeof(Resources), Name = "Account_Edit_Roles")]
         public string[] Roles { get; set; }
+
+        [Display(ResourceType = typeof(Resources), Name = "Account_Edit_AD")]
+        public bool AD { get; set; }
+
     }    
 
     public class UserDetailModel
@@ -70,6 +75,9 @@ namespace Bonobo.Git.Server.Models
 
         [Display(ResourceType = typeof(Resources), Name = "Account_Detail_Roles")]
         public string[] Roles { get; set; }
+
+        [Display(ResourceType = typeof(Resources), Name = "Account_Detail_AD")]
+        public bool AD { get; set; }
     }
 
     public class UserCreateModel
@@ -108,5 +116,8 @@ namespace Bonobo.Git.Server.Models
         [DataType(DataType.Password)]
         [Display(ResourceType = typeof(Resources), Name = "Account_Create_ConfirmPassword")]
         public string ConfirmPassword { get; set; }
+
+        [Display(ResourceType = typeof(Resources), Name = "Account_Create_AD")]
+        public bool AD { get; set; }
     }
 }

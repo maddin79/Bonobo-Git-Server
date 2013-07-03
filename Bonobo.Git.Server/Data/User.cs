@@ -10,6 +10,7 @@ namespace Bonobo.Git.Server.Data
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+        public System.Boolean AD { get; set; }
         public virtual ICollection<Repository> AdministratedRepositories { get; set; }
         public virtual ICollection<Repository> Repositories { get; set; }
         public virtual ICollection<Role> Roles { get; set; }

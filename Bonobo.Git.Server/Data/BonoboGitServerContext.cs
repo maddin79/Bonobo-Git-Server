@@ -36,12 +36,13 @@ namespace Bonobo.Git.Server.Data
 
                 foreach (var item in new UpdateScriptRepository().Scripts)
                 {
-                    if (!String.IsNullOrEmpty(item.Precondition))
+                    string precondition = item.Precondition;
+                    if (!String.IsNullOrEmpty(precondition))
                     {
-                        command.CommandText = item.Precondition;
+                        command.CommandText = precondition;
                         if (Convert.ToInt32(command.ExecuteScalar()) == 0)
                         {
-                            return;
+                            continue;
                         }
                     }
 

@@ -711,4 +711,37 @@
   <data name="Repository_Tree_PreviewNotSupported" xml:space="preserve">
     <value>Preview of this file is not supported.</value>
   </data>
+  <data name="Settings_Global_ADDomainHint" xml:space="preserve">
+    <value>Domain of the network for the LDAP-Server</value>
+    <comment>Added by: Martin Drees, CDH-Computing www.cdh-computing.de</comment>
+  </data>
+  <data name="Settings_Global_ADServiceUser" xml:space="preserve">
+    <value>Active Directory service user</value>
+    <comment>Added by: Martin Drees, CDH-Computing www.cdh-computing.de</comment>
+  </data>
+  <data name="Settings_Global_ADServiceUserHint" xml:space="preserve">
+    <value>User which has the permission for active directory lookups.</value>
+    <comment>Added by: Martin Drees, CDH-Computing www.cdh-computing.de</comment>
+  </data>
+  <data name="Settings_Global_ADDomain" xml:space="preserve">
+    <value>Active Directory Domain</value>
+    <comment>Added by: Martin Drees, CDH-Computing www.cdh-computing.de</comment>
+  </data>
+  <data name="Account_Create_AD" xml:space="preserve">
+    <value>Active Directory User?</value>
+  </data>
+  <data name="Settings_Global_ADPassword" xml:space="preserve">
+    <value>Service user password</value>
+    <comment>Added by: Martin Drees, CDH-Computing www.cdh-computing.de</comment>
+  </data>
+  <data name="Settings_Global_ADPasswordHint" xml:space="preserve">
+    <value>Password fo the Active Directory service user.</value>
+    <comment>Added by: Martin Drees, CDH-Computing www.cdh-computing.de</comment>
+  </data>
+  <data name="Account_Detail_AD" xml:space="preserve">
+    <value>Active Directory User</value>
+  </data>
+  <data name="Account_Edit_AD" xml:space="preserve">
+    <value>Active Directory User?</value>
+  </data>
 </root>

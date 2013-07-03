@@ -21,6 +21,7 @@ namespace Bonobo.Git.Server.Data.Mapping
             Property(t => t.Username).HasColumnName("Username");
             Property(t => t.Password).HasColumnName("Password");
             Property(t => t.Email).HasColumnName("Email");
+            Property(t => t.AD).HasColumnName("AD");
         }
 
         private void SetProperties()
@@ -44,6 +45,10 @@ namespace Bonobo.Git.Server.Data.Mapping
             Property(t => t.Email)
                 .IsRequired()
                 .HasMaxLength(255);
+
+            Property(t => t.AD)
+                .IsRequired();
+
         }
 
         private void SetPrimaryKey()

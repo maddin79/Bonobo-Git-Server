@@ -41,6 +41,30 @@
                 @Resources.Settings_Global_AllowUserRepositoryCreation_Hint
             </p>
         </div>
+        <div class="ctrlHolder">
+            @Html.LabelFor(m => m.ADDomain)
+            @Html.TextBoxFor(m => m.ADDomain, new { @class = "textInput" })<em>*</em>
+            <p class="formHint">
+              @Html.ValidationMessageFor(m => m.ADDomain)
+              @Resources.Settings_Global_ADDomain
+            </p>
+        </div>
+        <div class="ctrlHolder">
+            @Html.LabelFor(m => m.ADServiceUser)
+            @Html.TextBoxFor(m => m.ADServiceUser, new { @class = "textInput" })<em>*</em>
+            <p class="formHint">
+              @Html.ValidationMessageFor(m => m.ADServiceUser)
+              @Resources.Settings_Global_ADServiceUserHint
+            </p>
+        </div>
+        <div class="ctrlHolder">
+            @Html.LabelFor(m => m.ADServiceUserPassword)
+            @Html.PasswordFor(m => m.ADServiceUserPassword, new { @class = "textInput" })<em>*</em>
+            <p class="formHint">
+              @Html.ValidationMessageFor(m => m.ADServiceUser)
+              @Resources.Settings_Global_ADServiceUserHint
+            </p>
+        </div>
         <div class="buttonHolder">
             <button type="reset" class="secondaryAction">← @Resources.Reset</button>
             <input type="submit" value="@Resources.Settings_Index_Save" class="primaryAction" />
