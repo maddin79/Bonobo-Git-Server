@@ -166,20 +166,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Resources.de-DE.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.de-DE.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="App_GlobalResources\Resources.ja-JP.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.ja-JP.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="App_GlobalResources\Resources.tr-TR.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.tr-TR.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="App_GlobalResources\Resources.zh-CN.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.zh-CN.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="BasicAuthorizeAttribute.cs" />
     <Compile Include="Bootstrapper.cs" />
@@ -223,6 +232,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.cs-CZ.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="FormsAuthorizeRepositoryAttribute.cs" />
     <Compile Include="RepositoryBrowser.cs" />
@@ -238,6 +248,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Security\EFRoleProvider.cs" />
     <Compile Include="Security\FormsAuthenticationService.cs" />
@@ -255,6 +266,9 @@
     <Content Include="App_Data\Git\git.exe" />
     <Content Include="App_Data\note.txt" />
     <Content Include="App_Data\Repositories\note.txt" />
+    <Content Include="Content\ad-functions.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\images\action_added.gif" />
     <Content Include="Content\images\action_copied.gif" />
     <Content Include="Content\images\action_deleted.gif" />
@@ -268,6 +282,7 @@
     <Content Include="Content\images\commits.png" />
     <Content Include="Content\images\create.png" />
     <Content Include="Content\images\cz.png" />
+    <Content Include="Content\images\de.png" />
     <Content Include="Content\images\detail.png" />
     <Content Include="Content\images\download_file.png" />
     <Content Include="Content\images\jp.png" />
@@ -396,6 +411,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Data\Web.config" />
+    <None Include="Properties\PublishProfiles\jhkb.pubxml" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <Content Include="Views\Repository\Blob.cshtml" />
   </ItemGroup>
@@ -435,22 +451,32 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.cs-CZ.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Resources.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.de-DE.designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Resources.ja-JP.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ja-JP.designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Resources.tr-TR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.tr-TR.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Resources.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.zh-CN.designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

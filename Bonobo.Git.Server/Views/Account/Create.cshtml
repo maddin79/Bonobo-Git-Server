@@ -37,22 +37,22 @@
         </p> 
       </div> 
       <div class="ctrlHolder"> 
+          @Html.LabelFor(m => m.AD)
+          @Html.CheckBoxFor(m => m.AD, new { @class = "selectInput small", @onchange = "changePWElements(\"create\",this.checked)"})<em>*</em>
+      </div>
+      <div class="ctrlHolder" id="pw"> 
           @Html.LabelFor(m => m.Password)
           @Html.PasswordFor(m => m.Password, new { @class = "textInput small" })<em>*</em>     
         <p class="formHint">
           @Html.ValidationMessageFor(m => m.Password)
         </p> 
       </div> 
-      <div class="ctrlHolder"> 
+      <div class="ctrlHolder" id="confirmPW"> 
           @Html.LabelFor(m => m.ConfirmPassword)
           @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "textInput small" })<em>*</em>     
         <p class="formHint">
           @Html.ValidationMessageFor(m => m.ConfirmPassword)
         </p> 
-      </div> 
-      <div class="ctrlHolder"> 
-          @Html.LabelFor(m => m.AD)
-          @Html.CheckBoxFor(m => m.AD, new { @class = "selectInput small" })<em>*</em>
       </div>
       <div class="buttonHolder"> 
         <button type="reset" class="secondaryAction">← @Resources.Reset</button> 

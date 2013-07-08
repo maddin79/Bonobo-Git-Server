@@ -45,35 +45,64 @@ else
           </div> 
           <div class="ctrlHolder"> 
               @Html.LabelFor(m => m.AD)
-              @Html.TextBoxFor(m => m.AD, new { @class = "textInput medium" })<em>*</em>     
+              @Html.CheckBoxFor(m => m.AD, new { @class = "textInput medium", @onchange = "changePWElements(\"edit\",this.checked)" })<em>*</em>     
             <p class="formHint">
               @Html.ValidationMessageFor(m => m.AD)
             </p> 
           </div>
-          @if (!User.IsInRole(Definitions.Roles.Administrator))
-          {
-             <div class="ctrlHolder"> 
+          
+          @if(@Model.AD){
+            if (!User.IsInRole(Definitions.Roles.Administrator))
+            {
+             <div class="ctrlHolder" id="oldPW" style="display:none;"> 
                  @Html.LabelFor(m => m.OldPassword)
                  @Html.PasswordFor(m => m.OldPassword, new { @class = "textInput small" })<em>*</em>     
                <p class="formHint">
                  @Html.ValidationMessageFor(m => m.OldPassword)
                </p> 
              </div>  
+            }
+            <div class="ctrlHolder" id="newPW" style="display:none;"> 
+                @Html.LabelFor(m => m.NewPassword)
+                @Html.PasswordFor(m => m.NewPassword, new { @class = "textInput small" })<em>*</em>     
+              <p class="formHint">
+                @Html.ValidationMessageFor(m => m.NewPassword)
+              </p> 
+            </div>
+            <div class="ctrlHolder" id="confirmPW" style="display:none;"> 
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "textInput small" })<em>*</em>     
+              <p class="formHint">
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+              </p> 
+            </div>
+          }else{
+            if (!User.IsInRole(Definitions.Roles.Administrator))
+            {
+             <div class="ctrlHolder" id="oldPW"> 
+                 @Html.LabelFor(m => m.OldPassword)
+                 @Html.PasswordFor(m => m.OldPassword, new { @class = "textInput small" })<em>*</em>     
+               <p class="formHint">
+                 @Html.ValidationMessageFor(m => m.OldPassword)
+               </p> 
+             </div>  
+            }
+            <div class="ctrlHolder" id="newPW"> 
+                @Html.LabelFor(m => m.NewPassword)
+                @Html.PasswordFor(m => m.NewPassword, new { @class = "textInput small" })<em>*</em>     
+              <p class="formHint">
+                @Html.ValidationMessageFor(m => m.NewPassword)
+              </p> 
+            </div>
+            <div class="ctrlHolder" id="confirmPW"> 
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "textInput small" })<em>*</em>     
+              <p class="formHint">
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+              </p> 
+            </div>
           }
-          <div class="ctrlHolder"> 
-              @Html.LabelFor(m => m.NewPassword)
-              @Html.PasswordFor(m => m.NewPassword, new { @class = "textInput small" })<em>*</em>     
-            <p class="formHint">
-              @Html.ValidationMessageFor(m => m.NewPassword)
-            </p> 
-          </div>
-          <div class="ctrlHolder"> 
-              @Html.LabelFor(m => m.ConfirmPassword)
-              @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "textInput small" })<em>*</em>     
-            <p class="formHint">
-              @Html.ValidationMessageFor(m => m.ConfirmPassword)
-            </p> 
-          </div>
+
           @if (User.IsInRole(Definitions.Roles.Administrator))
           {
               <div class="ctrlHolder"> 
