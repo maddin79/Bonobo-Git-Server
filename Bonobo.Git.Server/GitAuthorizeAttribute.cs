@@ -10,13 +10,17 @@ using Microsoft.Practices.Unity;
 
 namespace Bonobo.Git.Server
 {
-    public class BasicAuthorizeAttribute : AuthorizeAttribute
+    public class GitAuthorizeAttribute : AuthorizeAttribute
     {
         [Dependency]
         public IMembershipService MembershipService { get; set; }
 
+
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
+            if (IsWindowsUserAuthenticated(filterContext))
+                return;
+
             if (filterContext == null)
             {
                 throw new ArgumentNullException("filterContext");
@@ -30,7 +34,7 @@ namespace Bonobo.Git.Server
                 string value = Encoding.ASCII.GetString(encodedDataAsBytes);
                 string username = value.Substring(0, value.IndexOf(':'));
                 string password = value.Substring(value.IndexOf(':') + 1);
-                
+
                 if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password) && MembershipService.ValidateUser(username, password))
                 {
                     filterContext.HttpContext.User = new GenericPrincipal(new GenericIdentity(username), null);
@@ -40,6 +44,13 @@ namespace Bonobo.Git.Server
                     filterContext.Result = new HttpStatusCodeResult(401);
                 }
             }
+        }
+
+
+        private bool IsWindowsUserAuthenticated(AuthorizationContext context)
+        {
+            var windowsIdentity = context.HttpContext.User.Identity as WindowsIdentity;
+            return windowsIdentity != null && windowsIdentity.IsAuthenticated;
         }
     }
 }

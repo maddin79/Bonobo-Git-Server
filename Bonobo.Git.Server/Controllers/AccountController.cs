@@ -10,6 +10,7 @@ using Microsoft.Practices.Unity;
 using System.Globalization;
 using Bonobo.Git.Server.App_GlobalResources;
 using Bonobo.Git.Server.Configuration;
+using Bonobo.Git.Server.Extensions;
 
 namespace Bonobo.Git.Server.Controllers
 {
@@ -22,11 +23,12 @@ namespace Bonobo.Git.Server.Controllers
         public IFormsAuthenticationService FormsAuthenticationService { get; set; }
 
 
-        [FormsAuthorizeAttribute]
+        [WebAuthorizeAttribute]
         public ActionResult Detail(string id)
         {
             if (!String.IsNullOrEmpty(id))
             {
+                id = UsernameUrl.Decode(id);
                 var user = MembershipService.GetUser(id);
                 if (user != null)
                 {
@@ -45,11 +47,12 @@ namespace Bonobo.Git.Server.Controllers
             return View();
         }
 
-        [FormsAuthorizeAttribute(Roles = Definitions.Roles.Administrator)]
+        [WebAuthorizeAttribute(Roles = Definitions.Roles.Administrator)]
         public ActionResult Delete(string id)
         {
             if (!String.IsNullOrEmpty(id))
             {
+                id = UsernameUrl.Decode(id).ToLowerInvariant();
                 return View(new UserDetailModel { Username = id });
             }
 
@@ -57,12 +60,12 @@ namespace Bonobo.Git.Server.Controllers
         }
 
         [HttpPost]
-        [FormsAuthorizeAttribute(Roles = Definitions.Roles.Administrator)]
+        [WebAuthorizeAttribute(Roles = Definitions.Roles.Administrator)]
         public ActionResult Delete(UserDetailModel model)
         {
             if (model != null && !String.IsNullOrEmpty(model.Username))
             {
-                if (model.Username != User.Identity.Name)
+                if (model.Username != User.Identity.Name.ToLowerInvariant())
                 {
                     MembershipService.DeleteUser(model.Username);
                     TempData["DeleteSuccess"] = true;
@@ -75,16 +78,18 @@ namespace Bonobo.Git.Server.Controllers
             return RedirectToAction("Index");
         }
 
-        [FormsAuthorizeAttribute(Roles = Definitions.Roles.Administrator)]
+        [WebAuthorizeAttribute(Roles = Definitions.Roles.Administrator)]
         public ActionResult Index()
         {
             return View(GetDetailUsers());
         }
 
-        [FormsAuthorizeAttribute]
+        [WebAuthorizeAttribute]
         public ActionResult Edit(string id)
         {
-            if (User.Identity.Name != id && !User.IsInRole(Definitions.Roles.Administrator))
+            id = UsernameUrl.Decode(id).ToLowerInvariant();
+
+            if (User.Identity.Name.ToLowerInvariant() != id && !User.IsInRole(Definitions.Roles.Administrator))
             {
                 return RedirectToAction("Unauthorized", "Home");
             }
@@ -113,10 +118,10 @@ namespace Bonobo.Git.Server.Controllers
         }
 
         [HttpPost]
-        [FormsAuthorizeAttribute]
+        [WebAuthorizeAttribute]
         public ActionResult Edit(UserEditModel model)
         {
-            if (User.Identity.Name != model.Username && !User.IsInRole(Definitions.Roles.Administrator))
+            if (User.Identity.Name.ToLowerInvariant() != model.Username && !User.IsInRole(Definitions.Roles.Administrator))
             {
                 return RedirectToAction("Unauthorized", "Home");
             }
@@ -137,7 +142,7 @@ namespace Bonobo.Git.Server.Controllers
                     valid = false;
                 }
 
-                if (User.IsInRole(Definitions.Roles.Administrator) && model.Username == User.Identity.Name && !(model.Roles != null && model.Roles.Contains(Definitions.Roles.Administrator)))
+                if (User.IsInRole(Definitions.Roles.Administrator) && model.Username == User.Identity.Name.ToLowerInvariant() && !(model.Roles != null && model.Roles.Contains(Definitions.Roles.Administrator)))
                 {
                     ModelState.AddModelError("Roles", Resources.Account_Edit_CannotRemoveYourselfFromAdminRole);
                     valid = false;
@@ -159,6 +164,7 @@ namespace Bonobo.Git.Server.Controllers
             return View(model);
         }
 
+        [WindowsActionFilter]
         public ActionResult Create()
         {
             if ((Request.IsAuthenticated && !User.IsInRole(Definitions.Roles.Administrator)) || (!Request.IsAuthenticated && !UserConfiguration.Current.AllowAnonymousRegistration))
@@ -169,7 +175,7 @@ namespace Bonobo.Git.Server.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, WindowsActionFilter]
         public ActionResult Create(UserCreateModel model)
         {
             if ((Request.IsAuthenticated && !User.IsInRole(Definitions.Roles.Administrator)) || (!Request.IsAuthenticated && !UserConfiguration.Current.AllowAnonymousRegistration))

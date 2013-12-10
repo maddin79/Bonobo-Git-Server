@@ -1,0 +1,92 @@
+﻿@using Bonobo.Git.Server.Extensions
+@model Bonobo.Git.Server.Models.GlobalSettingsModel
+@{
+    ViewBag.Title = Resources.Settings_Index_Title;
+}
+<h2>@Resources.Settings_Index_Title</h2>
+@using (Html.BeginForm("Index", "Settings", FormMethod.Post, new { @class = "uniForm" }))
+{
+    if (ViewBag.UpdateSuccess != null && ViewBag.UpdateSuccess)
+    {
+        <div id="okMsg">
+            <p>@Resources.Settings_Index_UpdateSuccess</p>
+        </div>
+    }
+
+    @Html.ValidationSummary(false, Resources.Settings_Index_Failed, new { @id = "errorMsg" })
+    <fieldset>
+        <h3>@Resources.Settings_Index_Title</h3>
+        <div class="ctrlHolder noLabel">
+            <label for="AllowAnonymousPush">@Html.CheckBoxFor(m => m.AllowAnonymousPush) @Model.GetType().GetDisplayValue("AllowAnonymousPush")</label>
+            <p class="formHint">
+            </p>
+        </div>
+        <div class="ctrlHolder">
+            @Html.LabelFor(m => m.RepositoryPath)
+            @Html.TextBoxFor(m => m.RepositoryPath, new { @class = "textInput" })<em>*</em>
+            <p class="formHint">
+              @Html.ValidationMessageFor(m => m.RepositoryPath)
+              @Resources.Settings_Global_DirectoryHint
+            </p>
+        </div>
+        <div class="ctrlHolder noLabel">
+            <label for="AllowAnonymousRegistration">@Html.CheckBoxFor(m => m.AllowAnonymousRegistration) @Model.GetType().GetDisplayValue("AllowAnonymousRegistration")</label>
+            <p class="formHint">
+                @Resources.Settings_Global_AllowAnonymousRegistration_Hint
+            </p>
+        </div>
+        <div class="ctrlHolder noLabel">
+            <label for="AllowUserRepositoryCreation">@Html.CheckBoxFor(m => m.AllowUserRepositoryCreation) @Model.GetType().GetDisplayValue("AllowUserRepositoryCreation")</label>
+            <p class="formHint">
+                @Resources.Settings_Global_AllowUserRepositoryCreation_Hint
+            </p>
+        </div>
+        <div class="ctrlHolder">
+<<<<<<< HEAD
+            @Html.LabelFor(m => m.ADDomain)
+            @Html.TextBoxFor(m => m.ADDomain, new { @class = "textInput" })<em>*</em>
+            <p class="formHint">
+              @Html.ValidationMessageFor(m => m.ADDomain)
+              @Resources.Settings_Global_ADDomain
+            </p>
+        </div>
+        <div class="ctrlHolder">
+            @Html.LabelFor(m => m.ADServiceUser)
+            @Html.TextBoxFor(m => m.ADServiceUser, new { @class = "textInput" })<em>*</em>
+            <p class="formHint">
+              @Html.ValidationMessageFor(m => m.ADServiceUser)
+              @Resources.Settings_Global_ADServiceUserHint
+            </p>
+        </div>
+        <div class="ctrlHolder">
+            @Html.LabelFor(m => m.ADServiceUserPassword)
+            @Html.PasswordFor(m => m.ADServiceUserPassword, new { @class = "textInput" })<em>*</em>
+            <p class="formHint">
+              @Html.ValidationMessageFor(m => m.ADServiceUser)
+              @Resources.Settings_Global_ADServiceUserHint
+=======
+            <label for="DefaultLanguage">@Model.GetType().GetDisplayValue("DefaultLanguage")</label>
+            @*@Html.TextBoxFor(m => m.DefaultLanguage, new { @class = "textInput" })*@
+            
+            <select id="DefaultLanguage" name="DefaultLanguage">
+                <option @((Model.DefaultLanguage == "cs-CZ") ? "Selected" : "") value="cs-CZ">cs-CZ</option>
+                <option @((Model.DefaultLanguage == "ja-JP") ? "Selected" : "") value="ja-JP">ja-JP</option>
+                <option @((Model.DefaultLanguage == "zh-CN") ? "Selected" : "") value="zh-CN">zh-CN</option>
+                <option @((Model.DefaultLanguage == "en")    ? "Selected" : "") value="en">en</option>
+                <option @((Model.DefaultLanguage == "tr-TR") ? "Selected" : "") value="tr-TR">tr-TR</option>
+                <option @((Model.DefaultLanguage == "es-ES") ? "Selected" : "") value="es-ES">es-ES</option>
+                <option @((Model.DefaultLanguage == "sv-SE") ? "Selected" : "") value="sv-SE">sv-SE</option>
+                <option @((Model.DefaultLanguage == "ru-RU") ? "Selected" : "") value="ru-RU">ru-RU</option>
+            </select>
+            <p class="formHint">
+              @Html.ValidationMessageFor(m => m.DefaultLanguage)
+              @Resources.Settings_Global_DefaultLanguage_Hint
+>>>>>>> upstream/master
+            </p>
+        </div>
+        <div class="buttonHolder">
+            <button type="reset" class="secondaryAction">← @Resources.Reset</button>
+            <input type="submit" value="@Resources.Settings_Index_Save" class="primaryAction" />
+        </div>
+    </fieldset>
+}

@@ -22,6 +22,8 @@ namespace Bonobo.Git.Server.Models
         [Display(ResourceType = typeof(Resources), Name = "Settings_Global_RepositoryPath")]
         public string RepositoryPath { get; set; }
 
+        [Display(ResourceType = typeof(Resources), Name = "Settings_Global_DefaultLanguage")]
+        public string DefaultLanguage { get; set; }
         // Attribute for the Active Directory Domain
         // Added by: Martin Drees, CDH-Computing www.cdh-computing.de
         [Display(ResourceType = typeof(Resources), Name = "Settings_Global_ADDomain")]
@@ -36,5 +38,5 @@ namespace Bonobo.Git.Server.Models
         // Added by: Martin Drees, CDH-Computing www.cdh-computing.de
         [Display(ResourceType = typeof(Resources), Name = "Settings_Global_ADPassword")]
         public string ADServiceUserPassword { get; set; }
-    }
+    }   
 }

@@ -26,32 +26,6 @@ namespace Bonobo.Git.Server.Data
         }
 
 
-        public static void RunAutomaticUpdate()
-        {
-            using (var ctx = new BonoboGitServerContext())
-            using (var connection = ctx.Database.Connection)
-            using (var command = connection.CreateCommand())
-            {
-                connection.Open();
-
-                foreach (var item in new UpdateScriptRepository().Scripts)
-                {
-                    string precondition = item.Precondition;
-                    if (!String.IsNullOrEmpty(precondition))
-                    {
-                        command.CommandText = precondition;
-                        if (Convert.ToInt32(command.ExecuteScalar()) == 0)
-                        {
-                            continue;
-                        }
-                    }
-
-                    command.CommandText = item.Command;
-                    command.ExecuteNonQuery();
-                } 
-            }            
-        }
-
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

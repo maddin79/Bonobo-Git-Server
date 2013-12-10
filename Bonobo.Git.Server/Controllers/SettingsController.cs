@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
-using Bonobo.Git.Server.Models;
-using System.Configuration;
 using System.Web.Configuration;
-using System.IO;
+using System.Web.Mvc;
 using Bonobo.Git.Server.App_GlobalResources;
 using Bonobo.Git.Server.Configuration;
+using Bonobo.Git.Server.Models;
 
 namespace Bonobo.Git.Server.Controllers
 {
     public class SettingsController : Controller
     {
-        [FormsAuthorizeAttribute(Roles = Definitions.Roles.Administrator)]
+        [WebAuthorizeAttribute(Roles = Definitions.Roles.Administrator)]
         public ActionResult Index()
         {
             return View(new GlobalSettingsModel
@@ -23,6 +24,7 @@ namespace Bonobo.Git.Server.Controllers
                 RepositoryPath = UserConfiguration.Current.Repositories,
                 AllowAnonymousRegistration = UserConfiguration.Current.AllowAnonymousRegistration,
                 AllowUserRepositoryCreation = UserConfiguration.Current.AllowUserRepositoryCreation,
+                DefaultLanguage = UserConfiguration.Current.DefaultLanguage,
                 // Added by: Martin Drees, CDH-Computing www.cdh-computing.de
                 ADDomain = UserConfiguration.Current.ADDomain,
                 ADServiceUser = UserConfiguration.Current.ADServiceUser,
@@ -31,7 +33,7 @@ namespace Bonobo.Git.Server.Controllers
         }
 
         [HttpPost]
-        [FormsAuthorizeAttribute(Roles = Definitions.Roles.Administrator)]
+        [WebAuthorizeAttribute(Roles = Definitions.Roles.Administrator)]
         public ActionResult Index(GlobalSettingsModel model)
         {
             if (ModelState.IsValid)
@@ -44,6 +46,7 @@ namespace Bonobo.Git.Server.Controllers
                         UserConfiguration.Current.Repositories = model.RepositoryPath;
                         UserConfiguration.Current.AllowAnonymousRegistration = model.AllowAnonymousRegistration;
                         UserConfiguration.Current.AllowUserRepositoryCreation = model.AllowUserRepositoryCreation;
+                        UserConfiguration.Current.DefaultLanguage = model.DefaultLanguage;
                         UserConfiguration.Current.ADDomain = model.ADDomain;
                         UserConfiguration.Current.ADServiceUser = model.ADServiceUser;
                         // If there is no new password, the old password will not be overritten.
@@ -51,6 +54,8 @@ namespace Bonobo.Git.Server.Controllers
                             UserConfiguration.Current.ADServiceUserPassword = model.ADServiceUserPassword;
                         }                        
                         UserConfiguration.Current.Save();
+
+                        this.Session["Culture"] = new CultureInfo(model.DefaultLanguage);
 
                         ViewBag.UpdateSuccess = true;
                     }

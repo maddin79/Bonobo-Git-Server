@@ -30,6 +30,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -170,11 +171,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="App_GlobalResources\Resources.de-DE.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.de-DE.resx</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+=======
+    <Compile Include="App_GlobalResources\Resources.sv-SE.designer.cs">
+      <DependentUpon>Resources.sv-SE.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Resources.ru-RU.designer.cs">
+      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Resources.es-ES.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.es-ES.resx</DependentUpon>
+>>>>>>> upstream/master
     </Compile>
     <Compile Include="App_GlobalResources\Resources.ja-JP.designer.cs">
       <AutoGen>True</AutoGen>
@@ -194,7 +212,10 @@
       <DependentUpon>Resources.zh-CN.resx</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="BasicAuthorizeAttribute.cs" />
+    <Compile Include="Data\Update\AutomaticUpdater.cs" />
+    <Compile Include="Data\Update\RepositorySynchronizer.cs" />
+    <Compile Include="Data\Update\UsernamesToLower.cs" />
+    <Compile Include="GitAuthorizeAttribute.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Configuration\ConfigurationEntry.cs" />
     <Compile Include="Configuration\UserConfiguration.cs" />
@@ -225,7 +246,7 @@
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="FileActionResult.cs" />
     <Compile Include="FileNameAttribute.cs" />
-    <Compile Include="FormsAuthorizeAttribute.cs" />
+    <Compile Include="WebAuthorizeAttribute.cs" />
     <Compile Include="Helpers\CustomHtmlHelpers.cs" />
     <Compile Include="Models\HomeModels.cs" />
     <Compile Include="Models\RepositoryModels.cs" />
@@ -238,7 +259,7 @@
       <DependentUpon>Resources.cs-CZ.resx</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="FormsAuthorizeRepositoryAttribute.cs" />
+    <Compile Include="WebAuthorizeRepositoryAttribute.cs" />
     <Compile Include="RepositoryBrowser.cs" />
     <Compile Include="Security\EFMembershipService.cs" />
     <Compile Include="Security\EFRepositoryPermissionService.cs" />
@@ -262,6 +283,9 @@
     <Compile Include="FileDisplayHandler.cs" />
     <Compile Include="UnityDependencyResolver.cs" />
     <Compile Include="UnityFilterAttributeFilterProvider.cs" />
+    <Compile Include="WindowsActionFilterAttribute.cs" />
+    <Compile Include="WindowsIdentityImporter.cs" />
+    <Compile Include="UsernameUrl.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Git\antiword.exe" />
@@ -390,14 +414,11 @@
     <Content Include="App_Data\Git\xargs.exe" />
     <Content Include="App_Data\note.txt" />
     <Content Include="App_Data\Repositories\note.txt" />
-<<<<<<< HEAD
     <Content Include="Content\ad-functions.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-=======
     <Content Include="bin\NativeBinaries\amd64\git2-9d9fff3.dll" />
     <Content Include="bin\NativeBinaries\x86\git2-9d9fff3.dll" />
->>>>>>> upstream/master
     <Content Include="Content\images\action_added.gif" />
     <Content Include="Content\images\action_copied.gif" />
     <Content Include="Content\images\action_deleted.gif" />
@@ -408,15 +429,17 @@
     <Content Include="Content\images\branch_active.png" />
     <Content Include="Content\images\browser.png" />
     <Content Include="Content\images\cn.png" />
+    <Content Include="Content\images\ru.png" />
     <Content Include="Content\images\commits.png" />
     <Content Include="Content\images\create.png" />
     <Content Include="Content\images\cz.png" />
-    <Content Include="Content\images\de.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\images\de.png" />
     <Content Include="Content\images\detail.png" />
     <Content Include="Content\images\download_file.png" />
+    <Content Include="Content\images\es.png" />
+    <Content Include="Content\images\git-logo.png" />
     <Content Include="Content\images\jp.png" />
+    <Content Include="Content\images\se.png" />
     <Content Include="Content\images\tag.png" />
     <Content Include="Content\images\tag_active.png" />
     <Content Include="Content\images\tr.png" />
@@ -542,9 +565,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Data\Web.config" />
-<<<<<<< HEAD
-    <None Include="Properties\PublishProfiles\jhkb.pubxml" />
-=======
     <Content Include="App_Data\Git\astextplain" />
     <Content Include="App_Data\Git\awk" />
     <Content Include="App_Data\Git\bunzip2" />
@@ -565,7 +585,6 @@
     <Content Include="App_Data\Git\vim" />
     <Content Include="App_Data\Git\which" />
     <Content Include="App_Data\Git\yacc" />
->>>>>>> upstream/master
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <Content Include="Views\Repository\Blob.cshtml" />
   </ItemGroup>
@@ -601,6 +620,10 @@
     <Content Include="Views\Repository\_Commit.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="App_GlobalResources\Resources.sv-SE.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resources.sv-SE.designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Resources.cs-CZ.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.cs-CZ.Designer.cs</LastGenOutput>
@@ -611,6 +634,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.de-DE.designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Resources.ru-RU.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resources.ru-RU.designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Resources.es-ES.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resources.es-ES.designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Resources.ja-JP.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
