@@ -31,7 +31,7 @@ html        { font: 82%/1.5 Helvetica, Arial, Sans-Serif; color: #000; backgroun
 dl dd,ol li, ul li    { margin-left: 2.5em; }
 ul li       { list-style: disc; }
 ol li       { list-style: decimal;}
- 
+
 table    { width: 100%; background: #fff; border: 1px solid #b9b9b9;}
 table th { font-weight: bold; background: #6b6b6b; color: #fff;}
 table td { }

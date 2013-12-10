@@ -38,6 +38,7 @@ Thumbs.db
 obj/
 [Dd]ebug*/
 [Rr]elease*/
+*.sln
 
 #Toolinga
 [Tt]est[Rr]esult
